@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Azure Cmdlets Details with Copy Feature</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f9f9f9;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background: white;
+      }
+      th,
+      td {
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background-color: #0078d7;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+      tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tbody tr:hover {
+        background-color: #e6f0ff;
+      }
+      .container {
+        overflow-x: auto;
+        max-width: 100%;
+      }
+      button.copy-btn {
+        margin-left: 8px;
+        padding: 2px 6px;
+        font-size: 12px;
+        cursor: pointer;
+        border: none;
+        background-color: #0078d7;
+        color: white;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+      }
+      button.copy-btn:hover {
+        background-color: #005fa3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Azure Cmdlets Details</h1>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Module</th>
+            <th>Synopsis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMPublicIPAddress</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMPublicIPAddress')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>PSCloudShellUtility</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Invoke-AzVMCommand</span>
+              <button class="copy-btn" onclick="copyCmd('Invoke-AzVMCommand')">
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>PSCloudShellUtility</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVmNsg</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVmNsg')">
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>PSCloudShellUtility</td>
+            <td>…</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMPSRemoting</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVMPSRemoting')">
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>PSCloudShellUtility</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Enable-AzVMPSRemoting</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Enable-AzVMPSRemoting')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>PSCloudShellUtility</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Disable-AzVMPSRemoting</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Disable-AzVMPSRemoting')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>PSCloudShellUtility</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Test-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('Test-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>PSCloudShellUtility</td>
+            <td>…</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Remove-AzVMRunCommand</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Remove-AzVMRunCommand')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>Az.Compute</td>
+            <td>The operation to delete the run command.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Remove-AzVmssVMRunCommand</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Remove-AzVmssVMRunCommand')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>Az.Compute</td>
+            <td>The operation to delete the VMSS VM run command.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Set-AzVMRunCommand</span>
+              <button class="copy-btn" onclick="copyCmd('Set-AzVMRunCommand')">
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>Az.Compute</td>
+            <td>The operation to create or update the run command.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Set-AzVmssVMRunCommand</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Set-AzVmssVMRunCommand')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Function</td>
+            <td>Az.Compute</td>
+            <td>The operation to create or update the VMSS VM run command.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVMAdditionalUnattendContent</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVMAdditionalUnattendContent')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>
+              Adds information to the unattended Windows Setup answer file.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVMDataDisk</span>
+              <button class="copy-btn" onclick="copyCmd('Add-AzVMDataDisk')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a data disk to a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmGalleryApplication</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmGalleryApplication')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>
+              Add a GalleryApplication object to the PSVirtualMachine object.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVMNetworkInterface</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVMNetworkInterface')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a network interface to a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVMSecret</span>
+              <button class="copy-btn" onclick="copyCmd('Add-AzVMSecret')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a secret to a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssAdditionalUnattendContent</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssAdditionalUnattendContent')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>
+              Adds information to the unattended Windows Setup answer file.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssDataDisk</span>
+              <button class="copy-btn" onclick="copyCmd('Add-AzVmssDataDisk')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a data disk to the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssDiagnosticsExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssDiagnosticsExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a diagnostics extension to the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssExtension</span>
+              <button class="copy-btn" onclick="copyCmd('Add-AzVmssExtension')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds an extension to the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssGalleryApplication</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssGalleryApplication')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>
+              Add a GalleryApplication object to the PSVirtualMachineProfile
+              object.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVMSshPublicKey</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVMSshPublicKey')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>
+              Adds the public keys for SSH for a virtual machine, when only
+              creating the VM.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssNetworkInterfaceConfig</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssNetworkInterfaceConfig')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a network interface configuration to the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssRunCommand</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssRunCommand')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adding Run Command to VMSS instances</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssSecret</span>
+              <button class="copy-btn" onclick="copyCmd('Add-AzVmssSecret')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a secret to a VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssSshPublicKey</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssSshPublicKey')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds SSH public keys to the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssVMDataDisk</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssVMDataDisk')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a data disk to a Vmss VM.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Add-AzVmssWinRMListener</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Add-AzVmssWinRMListener')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Adds a WinRM listener to the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">ConvertTo-AzVMManagedDisk</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('ConvertTo-AzVMManagedDisk')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>
+              Converts a virtual machine with blob-based disks to a virtual
+              machine with managed disks.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Disable-AzVMDiskEncryption</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Disable-AzVMDiskEncryption')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Disables encryption on an IaaS virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Disable-AzVmssDiskEncryption</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Disable-AzVmssDiskEncryption')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Disables disk encryption on a VM scale set.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets the properties of a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMAccessExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMAccessExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about the VMAccess extension.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMADDomainExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMADDomainExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about an AD domain extension.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMAEMExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMAEMExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about the AEM extension.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMBootDiagnosticsData</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMBootDiagnosticsData')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets boot diagnostics data for a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMChefExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMChefExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about a Chef extension.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMCustomScriptExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMCustomScriptExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about a custom script extension.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMDiagnosticsExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMDiagnosticsExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>
+              Gets the settings of the Diagnostics extension on a virtual
+              machine.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMDscExtension</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMDscExtension')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about the DSC extension.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMExtension</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVMExtension')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about a VM extension.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMImage</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVMImage')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about virtual machine images.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMImagePublisher</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMImagePublisher')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about image publishers.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMImageSku</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVMImageSku')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about image SKUs.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMImageVersion</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMImageVersion')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets information about image versions.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMInstanceView</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMInstanceView')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets the instance view of a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMListAvailableSize</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVMListAvailableSize')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets available VM sizes in a location.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMPatchStatus</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVMPatchStatus')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets patch status for a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVMRunCommand</span>
+              <button class="copy-btn" onclick="copyCmd('Get-AzVMRunCommand')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets a virtual machine run command.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Get-AzVmssDiskEncryptionStatus</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Get-AzVmssDiskEncryptionStatus')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Gets the disk encryption status of a VMSS virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">New-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('New-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Creates a new Azure virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">New-AzVmss</span>
+              <button class="copy-btn" onclick="copyCmd('New-AzVmss')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Creates a new virtual machine scale set.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Remove-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('Remove-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Deletes an Azure virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Remove-AzVMRunCommand</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Remove-AzVMRunCommand')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Deletes a virtual machine run command.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Remove-AzVmss</span>
+              <button class="copy-btn" onclick="copyCmd('Remove-AzVmss')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Deletes a VM scale set.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Remove-AzVmssVM</span>
+              <button class="copy-btn" onclick="copyCmd('Remove-AzVmssVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Deletes a VMSS virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Restart-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('Restart-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Restarts an Azure virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Restart-AzVmss</span>
+              <button class="copy-btn" onclick="copyCmd('Restart-AzVmss')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Restarts the VMSS or a virtual machine within the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Start-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('Start-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Starts an Azure virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Start-AzVmss</span>
+              <button class="copy-btn" onclick="copyCmd('Start-AzVmss')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Starts the VMSS or a virtual machine within the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Stop-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('Stop-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Stops an Azure virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Stop-AzVmss</span>
+              <button class="copy-btn" onclick="copyCmd('Stop-AzVmss')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Stops the VMSS or a virtual machine within the VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Update-AzVmss</span>
+              <button class="copy-btn" onclick="copyCmd('Update-AzVmss')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Updates specific properties of a VMSS.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Update-AzVmssInstance</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Update-AzVmssInstance')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Updates a VMSS VM instance.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Update-AzVM</span>
+              <button class="copy-btn" onclick="copyCmd('Update-AzVM')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Updates properties of a virtual machine.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Update-AzVMDataDisk</span>
+              <button class="copy-btn" onclick="copyCmd('Update-AzVMDataDisk')">
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Updates properties of a virtual machine data disk.</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="cmdlet">Update-AzVmssDataDisk</span>
+              <button
+                class="copy-btn"
+                onclick="copyCmd('Update-AzVmssDataDisk')"
+              >
+                Copy
+              </button>
+            </td>
+            <td>Cmdlet</td>
+            <td>Az.Compute</td>
+            <td>Updates properties of a VMSS data disk.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function copyCmd(cmd) {
+        navigator.clipboard.writeText(cmd).then(
+          () => {
+            <!-- alert(`Copied: ${cmd}`); -->
+          },
+          (err) => {
+            alert("Failed to copy text: ", err);
+          }
+        );
+      }
+    </script>
+  </body>
+</html>
