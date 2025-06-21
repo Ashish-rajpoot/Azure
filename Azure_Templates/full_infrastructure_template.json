@@ -1,0 +1,199 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    // Define parameters for customizability (e.g., VM name, admin username, password, location, IP prefix)
+    "vmName": {
+      "type": "string",
+      "defaultValue": "myVM",
+      "metadata": { "description": "Name of the VM." }
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": { "description": "Admin username for the VM." }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": { "description": "Admin password for the VM." }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": { "description": "Location for all resources." }
+    }
+  },
+  "functions": [],
+  "variables": {
+    // Define variables for consistency (e.g., NSG name, VNet name, subnet names, IP prefixes, image details)
+    "vnetName": "myVNet",
+    "subnet1Name": "FrontEndSubnet",
+    "subnet2Name": "BackEndSubnet",
+    "nsgName": "myAppNSG",
+    "pipName": "myVMPublicIP",
+    "nicName": "[concat(parameters('vmName'), '-nic')]",
+    "vnetAddressPrefix": "10.0.0.0/16",
+    "subnet1Prefix": "10.0.0.0/24",
+    "subnet2Prefix": "10.0.1.0/24",
+    "vmSize": "Standard_DS1_v2", // Example VM size
+    "imagePublisher": "MicrosoftWindowsServer",
+    "imageOffer": "WindowsServer",
+    "imageSku": "2019-Datacenter",
+    "imageVersion": "latest"
+  },
+  "resources": [
+    // 1. Network Security Group (NSG)
+    //    Define your NSG with RDP, HTTP, and any other required rules.
+    {
+      "name": "[variables('nsgName')]",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2024-03-01",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": [
+          // Your RDP rule (priority 100)
+          // Your HTTP rule (priority 110)
+          // ... other rules
+        ]
+      }
+    },
+
+    // 2. Virtual Network (VNet) with Subnets
+    //    Define the VNet and its subnets. Associate the NSG with the subnets.
+    {
+      "name": "[variables('vnetName')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2024-03-01",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]" // VNet depends on NSG for subnet association
+      ],
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": ["[variables('vnetAddressPrefix')]"]
+        },
+        "subnets": [
+          {
+            "name": "[variables('subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('subnet1Prefix')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+              }
+            }
+          },
+          {
+            "name": "[variables('subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[variables('subnet2Prefix')]",
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+              }
+            }
+          }
+        ]
+      }
+    },
+
+    // 3. Public IP Address (PIP)
+    //    Define the public IP address for your VM.
+    {
+      "name": "[variables('pipName')]",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2024-03-01",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "Standard" // Or Basic
+      },
+      "properties": {
+        "publicIPAllocationMethod": "Static",
+        "dnsSettings": {
+          "domainNameLabel": "[concat(parameters('vmName'), 'unique')]" // Ensure unique DNS label
+        }
+      }
+    },
+
+    // 4. Network Interface Card (NIC)
+    //    Define the NIC, associating it with a VNet subnet and the Public IP.
+    {
+      "name": "[variables('nicName')]",
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2024-03-01",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]", // NIC depends on VNet/Subnet
+        "[resourceId('Microsoft.Network/publicIPAddresses', variables('pipName'))]" // NIC depends on PIP
+      ],
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vnetName'), variables('subnet1Name'))]" // Assign to subnet 1
+              },
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('pipName'))]"
+              }
+            }
+          }
+        ]
+      }
+    },
+
+    // 5. Virtual Machine (VM)
+    //    Define the VM, associating it with the NIC and providing OS disk, data disk, and login details.
+    {
+      "name": "[parameters('vmName')]",
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2023-09-01", // Or a later version
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]" // VM depends on NIC
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[variables('vmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "[variables('imagePublisher')]",
+            "offer": "[variables('imageOffer')]",
+            "sku": "[variables('imageSku')]",
+            "version": "[variables('imageVersion')]"
+          },
+          "osDisk": {
+            "createOption": "FromImage",
+            "managedDisk": {
+              "storageAccountType": "Standard_LRS" // Or Premium_LRS, StandardSSD_LRS
+            }
+          }
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+            }
+          ]
+        }
+        // Add extensions here if needed (e.g., custom script extension for initial setup)
+      }
+    }
+  ],
+  "outputs": {
+    // You can output the VM's public IP address, FQDN, etc.
+    "publicIPAddress": {
+      "type": "string",
+      "value": "[reference(variables('pipName')).ipAddress]"
+    },
+    "publicFQDN": {
+      "type": "string",
+      "value": "[reference(variables('pipName')).dnsSettings.fqdn]"
+    }
+  }
+}
